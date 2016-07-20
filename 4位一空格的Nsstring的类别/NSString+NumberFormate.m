@@ -12,12 +12,14 @@
 
 - (NSString *)orderWithCreditOrder {
     
-    NSMutableString *orgStr = [NSMutableString stringWithString:[self stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    NSString *string = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSMutableString *orgStr = [NSMutableString stringWithString:string];
     NSInteger length = orgStr.length;
     
     NSInteger newLength = [self getTotalLengthWithOrgLength:length];
     
-    for (int i = 0; i< (newLength-i)/4; i++) {
+    for (int i = 0; i< (newLength-i-1)/4; i++) {
         
         [orgStr insertString:@" " atIndex:(5*i+4)];
         

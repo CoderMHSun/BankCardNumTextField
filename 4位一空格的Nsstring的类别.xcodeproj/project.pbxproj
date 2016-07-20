@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6044BE3E1D3FD49900D8891D /* UITextField+ExtentRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6044BE3D1D3FD49900D8891D /* UITextField+ExtentRange.m */; };
 		EC6ECED61D3E103700763889 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6ECED51D3E103700763889 /* main.m */; };
 		EC6ECED91D3E103700763889 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6ECED81D3E103700763889 /* AppDelegate.m */; };
 		EC6ECEDC1D3E103700763889 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6ECEDB1D3E103700763889 /* ViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6044BE3C1D3FD49900D8891D /* UITextField+ExtentRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ExtentRange.h"; sourceTree = "<group>"; };
+		6044BE3D1D3FD49900D8891D /* UITextField+ExtentRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ExtentRange.m"; sourceTree = "<group>"; };
 		EC6ECED11D3E103700763889 /* 4位一空格的Nsstring的类别.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4位一空格的Nsstring的类别.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6ECED51D3E103700763889 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EC6ECED71D3E103700763889 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				EC6ECED81D3E103700763889 /* AppDelegate.m */,
 				EC6ECEDA1D3E103700763889 /* ViewController.h */,
 				EC6ECEDB1D3E103700763889 /* ViewController.m */,
+				6044BE3C1D3FD49900D8891D /* UITextField+ExtentRange.h */,
+				6044BE3D1D3FD49900D8891D /* UITextField+ExtentRange.m */,
 				EC6ECF071D3E108F00763889 /* NSString+NumberFormate.h */,
 				EC6ECF081D3E108F00763889 /* NSString+NumberFormate.m */,
 				EC6ECEDD1D3E103700763889 /* Main.storyboard */,
@@ -275,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6044BE3E1D3FD49900D8891D /* UITextField+ExtentRange.m in Sources */,
 				EC6ECEDC1D3E103700763889 /* ViewController.m in Sources */,
 				EC6ECF091D3E108F00763889 /* NSString+NumberFormate.m in Sources */,
 				EC6ECED91D3E103700763889 /* AppDelegate.m in Sources */,
@@ -502,6 +508,7 @@
 				EC6ECF001D3E103700763889 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC6ECF011D3E103700763889 /* Build configuration list for PBXNativeTarget "4位一空格的Nsstring的类别Tests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +517,7 @@
 				EC6ECF031D3E103700763889 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC6ECF041D3E103700763889 /* Build configuration list for PBXNativeTarget "4位一空格的Nsstring的类别UITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +526,7 @@
 				EC6ECF061D3E103700763889 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

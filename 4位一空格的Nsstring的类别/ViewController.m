@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSString+NumberFormate.h"
+#import "UITextField+ExtentRange.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 
@@ -56,21 +57,39 @@
             textField.text = newString;
             return NO;
         }
+        else {
+            //如果前边一位不是空格，那么要删除前一位字符，并且再排序
+            NSRange currentRange = [textField selectedRange];
+            NSMutableString *oString = [NSMutableString stringWithString:textField.text];
+            [oString replaceCharactersInRange:lastCharRange withString:@""];
+            
+            textField.text = [oString orderWithCreditOrder];
+            [textField setSelectedRange:NSMakeRange(currentRange.location-1, currentRange.length)];
+            return NO;
+        }
         
-        //如果前边一位不是空格，那么要删除前一位字符，并且再排序
-        NSMutableString *oString = [NSMutableString stringWithString:textField.text];
-        [oString replaceCharactersInRange:lastCharRange withString:@""];
-        [oString orderWithCreditOrder];
-        textField.text = oString;
-        return NO;
     }
     
     //如果不是是删除
+    //1.先获取当前光标位置
+    NSRange selectedRange = [textField selectedRange];
+    //2.将添加的字符添加到对应的光标位置
+    
     NSMutableString *orgString = [NSMutableString stringWithString:textField.text];
-    [orgString insertString:string atIndex:textField.text.length];
+    [orgString insertString:string atIndex:selectedRange.location];
     
     NSString *newString = [orgString orderWithCreditOrder];
     textField.text = newString;
+    BOOL isAddSpace = newString.length%5 == 1 && newString.length!=1;
+    
+    NSRange newRange = NSMakeRange(selectedRange.location+(isAddSpace?2:1), selectedRange.length);
+    
+    [textField setSelectedRange:newRange];
+    
+    NSString *pointerLastChar = [newString substringWithRange:NSMakeRange(newRange.location-1, 1)];
+    if ([pointerLastChar isEqualToString:@" "]) {
+        [textField setSelectedRange:NSMakeRange(newRange.location-1, 0)];
+    }
     
     return NO;
 }
