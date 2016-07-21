@@ -67,7 +67,12 @@
             NSRange afterDeleteRange = NSMakeRange(currentRange.location-1, currentRange.length);
             [textField setSelectedRange:afterDeleteRange];
             
+            //删除操作完成后
             //如果删除之后前边的一位字符是空格，那么光标前移一位
+            if (afterDeleteRange.location>textField.text.length) {
+                [textField setSelectedRange:NSMakeRange(textField.text.length, 0)];
+                return NO;
+            }
             NSString *pointerLastChar = [textField.text substringWithRange:NSMakeRange(afterDeleteRange.location-1, 1)];
             if ([pointerLastChar isEqualToString:@" "]) {
                 [textField setSelectedRange:NSMakeRange(afterDeleteRange.location-1, 0)];
