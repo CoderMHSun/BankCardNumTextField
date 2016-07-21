@@ -92,9 +92,18 @@
     
     NSString *newString = [orgString orderWithCreditOrder];
     textField.text = newString;
+    
+    //这里要判断前边是空格还是字符(selectedRange)
+    NSString *lastChar = [orgString substringWithRange:NSMakeRange(selectedRange.location-1, 1)];
+    BOOL lastIsSpace = [lastChar isEqualToString:@" "];
+    //如果是空格就直接＋1
+    
+    
+    //如果是字符就按下边的来
+    
     BOOL isAddSpace = newString.length%5 == 1 && newString.length!=1;
     
-    NSRange newRange = NSMakeRange(selectedRange.location+(isAddSpace?2:1), selectedRange.length);
+    NSRange newRange = NSMakeRange(selectedRange.location+( lastIsSpace?1:(isAddSpace?2:1)), selectedRange.length);
     
     [textField setSelectedRange:newRange];
     
