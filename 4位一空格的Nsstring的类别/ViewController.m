@@ -64,7 +64,14 @@
             [oString replaceCharactersInRange:lastCharRange withString:@""];
             
             textField.text = [oString orderWithCreditOrder];
-            [textField setSelectedRange:NSMakeRange(currentRange.location-1, currentRange.length)];
+            NSRange afterDeleteRange = NSMakeRange(currentRange.location-1, currentRange.length);
+            [textField setSelectedRange:afterDeleteRange];
+            
+            //如果删除之后前边的一位字符是空格，那么光标前移一位
+            NSString *pointerLastChar = [textField.text substringWithRange:NSMakeRange(afterDeleteRange.location-1, 1)];
+            if ([pointerLastChar isEqualToString:@" "]) {
+                [textField setSelectedRange:NSMakeRange(afterDeleteRange.location-1, 0)];
+            }
             return NO;
         }
         
@@ -86,10 +93,7 @@
     
     [textField setSelectedRange:newRange];
     
-    NSString *pointerLastChar = [newString substringWithRange:NSMakeRange(newRange.location-1, 1)];
-    if ([pointerLastChar isEqualToString:@" "]) {
-        [textField setSelectedRange:NSMakeRange(newRange.location-1, 0)];
-    }
+    
     
     return NO;
 }
