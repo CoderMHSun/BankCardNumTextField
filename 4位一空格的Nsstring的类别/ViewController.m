@@ -38,25 +38,17 @@
     
     //判断是否为删除符
     if ([string isEqualToString:@""]) {
-        UITextPosition* beginning = textField.beginningOfDocument;
-        UITextRange *selectedTextRange = textField.selectedTextRange;
         
-        UITextPosition* selectionStart = selectedTextRange.start;
-        UITextPosition* selectionEnd = selectedTextRange.end;
+        //现在是要获取textField的光标前一个字符
+        NSRange selectedRange = [textField selectedRange];
         
-        const NSInteger location = [textField offsetFromPosition:beginning toPosition:selectionStart];
-        const NSInteger length = [textField offsetFromPosition:selectionStart toPosition:selectionEnd];
-        
-        NSRange lastCharRange = NSMakeRange(location-1, length+1);
-        
+        NSRange lastCharRange = NSMakeRange(selectedRange.location-1, 1);
         
         NSString *lastChar = [textField.text substringWithRange:lastCharRange];
         //如果光标前一位是空格，那么没反应
         if ([lastChar isEqualToString:@" "]) {
-//            NSString *newString = [textField.text orderWithCreditOrder];
-//            textField.text = newString;
-            //如果删除空格的话就删除空格之前的字符
-            NSRange lastLastRange = NSMakeRange(location-2, length+1);
+
+            NSRange lastLastRange = NSMakeRange(lastCharRange.location-2, lastCharRange.length+1);
             NSMutableString *mutString = [NSMutableString stringWithString:textField.text];
             [mutString deleteCharactersInRange:lastLastRange];
             textField.text = [mutString orderWithCreditOrder];
