@@ -82,7 +82,7 @@
         
     }
     
-    //如果不是是删除
+    //如果不是是删除符
     //1.先获取当前光标位置
     NSRange selectedRange = [textField selectedRange];
     //2.将添加的字符添加到对应的光标位置
@@ -95,17 +95,34 @@
     
     //这里要判断前边是空格还是字符(selectedRange)
     NSString *lastChar = [orgString substringWithRange:NSMakeRange(selectedRange.location-1, 1)];
+    NSString *nextChar;
+    if (orgString.length>selectedRange.location+1) {
+        nextChar = [orgString substringWithRange:NSMakeRange(selectedRange.location+1, 1)];
+    }
+    else {
+        nextChar = nil;
+    }
+    
     BOOL lastIsSpace = [lastChar isEqualToString:@" "];
-    //如果是空格就直接＋1
+    BOOL nextIsSpace = [nextChar isEqualToString:@" "];
     
+    //判断在加入字符之前，光标后是不是空格
+    if (nextIsSpace) {
+        NSRange newRange = NSMakeRange(selectedRange.location+2, selectedRange.length);
+        
+        [textField setSelectedRange:newRange];
+    }
+    else {
+        //如果是空格就直接＋1
+        //如果是字符判断是不是需要➕空格
+        
+        BOOL needAddSpace = newString.length%5 == 1 && newString.length!=1;
+        
+        NSRange newRange = NSMakeRange(selectedRange.location+( lastIsSpace?1:(needAddSpace?2:1)), selectedRange.length);
+        
+        [textField setSelectedRange:newRange];
+    }
     
-    //如果是字符就按下边的来
-    
-    BOOL isAddSpace = newString.length%5 == 1 && newString.length!=1;
-    
-    NSRange newRange = NSMakeRange(selectedRange.location+( lastIsSpace?1:(isAddSpace?2:1)), selectedRange.length);
-    
-    [textField setSelectedRange:newRange];
     
     
     
