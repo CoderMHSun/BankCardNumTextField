@@ -45,10 +45,10 @@
         NSRange lastCharRange = NSMakeRange(selectedRange.location-1, 1);
         
         NSString *lastChar = [textField.text substringWithRange:lastCharRange];
-        //如果光标前一位是空格，那么没反应
+        //如果光标前一位是空格，那么为什么删除了两个字符
         if ([lastChar isEqualToString:@" "]) {
 
-            NSRange lastLastRange = NSMakeRange(lastCharRange.location-2, lastCharRange.length+1);
+            NSRange lastLastRange = NSMakeRange(lastCharRange.location-1, 1);
             NSMutableString *mutString = [NSMutableString stringWithString:textField.text];
             [mutString deleteCharactersInRange:lastLastRange];
             textField.text = [mutString orderWithCreditOrder];
