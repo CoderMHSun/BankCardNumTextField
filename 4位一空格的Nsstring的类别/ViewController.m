@@ -53,8 +53,16 @@
         NSString *lastChar = [textField.text substringWithRange:lastCharRange];
         //如果光标前一位是空格，那么没反应
         if ([lastChar isEqualToString:@" "]) {
-            NSString *newString = [textField.text orderWithCreditOrder];
-            textField.text = newString;
+//            NSString *newString = [textField.text orderWithCreditOrder];
+//            textField.text = newString;
+            //如果删除空格的话就删除空格之前的字符
+            NSRange lastLastRange = NSMakeRange(location-2, length+1);
+            NSMutableString *mutString = [NSMutableString stringWithString:textField.text];
+            [mutString deleteCharactersInRange:lastLastRange];
+            textField.text = [mutString orderWithCreditOrder];
+            
+            [textField setSelectedRange:NSMakeRange(lastLastRange.location, 0)];
+            
             return NO;
         }
         else {
